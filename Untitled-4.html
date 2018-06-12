@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document4</title>
+
+</head>
+<body>
+    <canvas id="mon_canvas" width="700" height="700"></canvas>
+    <script>
+window.onload = function () {
+
+    var canvas = document.getElementById('mon_canvas');
+        if (!canvas) {
+            alert("impossible de récupérer le canvas");
+            return;
+        }
+
+    var ctx = canvas.getContext('2d');
+        if(!ctx){
+            alert("impossible de récupérer le contexte du canvas");
+            return;
+        }
+
+   // test image
+
+    var image = new Image();
+    image.src = "mon_image.jpg";
+    image.onload = function (){
+    ctx.drawImage(this, 50, 250);
+    };
+
+
+        ctx.beginPath();
+        ctx.moveTo(50,50);
+        ctx.lineTo(200, 200);
+        ctx.moveTo(200,50);
+        ctx.lineTo(50, 200);
+        ctx.stroke();
+        ctx.closePath();
+
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+Skifree
+
+Trouver un nom
+Instructions de départ
+Début du jeu : en appuyant sur une touche
+Utilisation des flèches pour droite ou gauche ou en bas pour descendre
+Creer une piste de Ski
+Creer un skieur principal
+Creer des obstacles (skieurs débutants, chiens, pierres, poteaux, arbres, monticules de neiges...)
+Obstacles pour sauts
+Choisir un animal pour remplacer le Yeti
+Trouver une musique
+Onomatopées pour chutes ou quand il se cogne et bruitages
+Définir si le jeu sera perdant en une fois ou plusieurs possibilités puis perdant.
+Le faire sauter quand on clique
+
+Demander à Lucas de photoshopper mon bonhomme de fin

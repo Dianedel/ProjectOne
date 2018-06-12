@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document2</title>
+</head>
+<body>
+
+    <canvas id="mon_canvas" width="500" height="500"></canvas>
+    <script>
+window.onload = function () {
+
+    var canvas = document.getElementById('mon_canvas');
+        if (!canvas) {
+            alert("impossible de récupérer le canvas");
+            return;
+        }
+
+    var ctx = canvas.getContext('2d');
+        if(!ctx){
+            alert("impossible de récupérer le contexte du canvas");
+            return;
+        }
+
+    var myInterval = setInterval(animate, 1000/30);
+
+    var degrade = ctx.createLinearGradient(0,0,300,100);
+        degrade.addColorStop(0, "DeepPink");
+        degrade.addColorStop(1, "Pink");
+    ctx.fillStyle = degrade;
+    var tailleMini = 10;
+    var tailleMax = canvas.width;
+    var tailleActuelle = tailleMini;
+    var xPos = 0;
+    var yPos = 0;
+    var vitesse = -1; // 1 pour une augmentation ET -1 pour une réduction
+
+    function animate() {
+        ctx.clearRect(0,0, canvas.width, canvas.heigth);
+        xPos = (canvas.width/2)-(tailleActuelle/2);
+        yPos = xPos;
+        ctx.fillRect(xPos, yPos, tailleActuelle, tailleActuelle);
+
+        if(tailleActuelle >= tailleMax || tailleActuelle <= tailleMini)
+        { vitesse *= -1;
+        }
+
+        tailleActuelle +=vitesse;
+
+        ctx.font = "25px Sans-serif";
+        ctx.strokeStyle = "white";
+        ctx.strokeText("And now,", 170, 200);
+        ctx.strokeText('You think : ', 170, 250);
+        ctx.strokeText("<< whaou! un degradé de rose!! >>", 70, 300);
+        ctx.strokeText(":-))", 185, 350);
+    }
+
+
+}
+
+</script>
+
+</body>
+</html>
