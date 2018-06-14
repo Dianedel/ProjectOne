@@ -17,5 +17,6 @@ Agrandir la taille du mangeur quand il a mangé le skieur (cour renforcement du 
 bloquer la production des obstacles quand collision obstacles
 background
 compteur: : 15 collisions => game over
+image comme exe canvas depuis le centre
 
 Demander à Lucas de photoshopper mon bonhomme de fin

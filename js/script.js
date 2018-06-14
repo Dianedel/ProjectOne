@@ -68,8 +68,8 @@ playerImg.src = "./img/skiMan.jpg";
 var pineImg = new Image();
 pineImg.src = "./img/pineTree.jpg";
 
-var badManImg = new Image();
-badManImg.src = "./images/snowball.png";
+// var badManImg = new Image();
+// badManImg.src = "./img/snowball.png";
 
 // var broccoliImg = new Image();
 // broccoliImg.src = "./images/broccoli.png";
@@ -103,8 +103,9 @@ var addObstacle = setInterval(function () {
 var skieur = new Skieur();
 
 var counter = 600;
-// if (counter = -200){
-// this.speed = 0 };
+
+
+
 
 var drawLoop = setInterval(function () {
   // erase the old drawings
@@ -112,6 +113,11 @@ var drawLoop = setInterval(function () {
 
   // redraw everything
   skieur.draw();
+
+ctx.font = "18px Helvetica";
+ctx.fillStyle = "#0A7239";
+ctx.fillText("Rest of your Life " + counter, 550, 20);
+
 
   var globalCollision = false;
 
@@ -122,11 +128,15 @@ var drawLoop = setInterval(function () {
       globalCollision = true;
       counter -= 1;
       if (counter <=0) {
+        ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+        ctx.font = "36px Helvetica";
+        ctx.strokeStyle = "#C70039";
+        ctx.strokeText("GAME OVER !!!", 400, 40);
         clearInterval( addObstacle );
         movingObstacles.forEach( function (oneObstacle ) {
-          oneObstacle.speed = 0;
+        oneObstacle.speed = 0;
+        ctx.drawImage (badManImg, myCanvas.width, myCanvas.height)
         });
-      // ctx.drawImage (badManImg, myCanvas.width/2, myCanvas.height/2)
       }
 
       // continue if it's a good obstacle
