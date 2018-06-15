@@ -4,8 +4,6 @@ body {
   height: 100vh;
   background-image: url("../img/bac.jpg");
   background-size: contain;
-  /* background-repeat: no-repeat; */
-
   display: flex;
 }
 
@@ -15,17 +13,8 @@ body {
   border : 2px solid black;
 }
 
-/* .restart {
-  color: "red";
-
+div {
+  position: absolute;
+  left: 300px;
+  top: 38px;
 }
-
-a.button {
-  font-family: Arial, Helvetica, sans-serif;
-  display: block;
-  font-weight: bold;
-  font-size: 2em;
-  text-decoration: none;
-
-} */
-

@@ -45,11 +45,6 @@ function boxCollision (x1, y1, width1, height1, x2, y2, width2, height2) {
 // var restartButton = document.getElementById("restart");
 // restartButton.onclick = restart;
 
-// function restart(){
-
-//   mySkieur = new skieur();
-//   Obstacle = new Obstacle();
-// }
 
 // -----------------------------------------------------------------------------
 // Canvas
@@ -71,19 +66,19 @@ var ctx = myCanvas.getContext("2d");
 
 // Load images
 var playerImg = new Image();
-playerImg.src = "./img/skiGirl.png";
+playerImg.src = "../img/skiGirl.png";
 
 var treeImg = new Image();
-treeImg.src = "./img/arbre.png";
+treeImg.src = "../img/arbre.png";
 
 var badManImg = new Image();
-badManImg.src = "./img/snowball.png";
+badManImg.src = "../img/snowball.png";
 
 var rockImg = new Image();
-rockImg.src = "./img/rock.png";
+rockImg.src = "../img/rock.png";
 
 var pineTreeImg = new Image();
-pineTreeImg.src = "./img/pineTree.png";
+pineTreeImg.src = "../img/pineTree.png";
 
 var obstacleImages = [treeImg, rockImg, pineTreeImg, /*eggplantImg*/];
 var movingObstacles = [
@@ -112,7 +107,7 @@ var addObstacle = setInterval(function () {
 
 var skieur = new Skieur();
 
-var counter = 200;
+var counter = 1000;
 
 var drawLoop = setInterval(function () {
   // erase the old drawings
@@ -123,7 +118,7 @@ var drawLoop = setInterval(function () {
 
   ctx.font = "26px sans-serif";
   ctx.fillStyle = "#0A7239";
-  ctx.fillText("Life points " + counter, 550, 30);
+  ctx.fillText("Life points : " + counter, 550, 30);
 
 
 
@@ -176,25 +171,25 @@ body.onkeydown = function (event) {
   switch (event.keyCode) {
     case 90: // Z key
     case 38: // up arrow
-      skieur.y -= 5;
+      skieur.y -= 7;
       event.preventDefault();
       break;
 
     case 83: // S key
     case 40: // down arrow
-      skieur.y += 5;
+      skieur.y += 7;
       event.preventDefault();
       break;
 
     case 81: // Q key
     case 37: // left arrow
-      skieur.x -= 5;
+      skieur.x -= 7;
       event.preventDefault();
       break;
 
     case 68: // D key
     case 39: // right arrow
-      skieur.x += 5;
+      skieur.x += 7;
       event.preventDefault();
       break;
   }
