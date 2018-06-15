@@ -2,28 +2,30 @@ body {
   margin: 0;
   width: 100vw;
   height: 100vh;
+  background-image: url("../img/bac.jpg");
+  background-size: contain;
+  /* background-repeat: no-repeat; */
+
   display: flex;
 }
 
 #myCanvas {
   margin: auto;
+  background-color: white;
   border : 2px solid black;
 }
 
-  /* position:absolute;top:0;left:0;
-    background-image: linear-gradient(bottom, rgb(105,173,212) 0%, rgb(23,82,145) 84%);
-    background-image: -o-linear-gradient(bottom, rgb(105,173,212) 0%, rgb(23,82,145) 84%);
-    background-image: -moz-linear-gradient(bottom, rgb(105,173,212) 0%, rgb(23,82,145) 84%);
-    background-image: -webkit-linear-gradient(bottom, rgb(105,173,212) 0%, rgb(23,82,145) 84%);
-    background-image: -ms-linear-gradient(bottom, rgb(105,173,212) 0%, rgb(23,82,145) 84%);
+/* .restart {
+  color: "red";
 
-    background-image: -webkit-gradient(
-        linear,
-        left bottom,
-        left top,
-        color-stop(0, rgb(105,173,212)),
-        color-stop(0.84, rgb(23,82,145))
-    );
+}
+
+a.button {
+  font-family: Arial, Helvetica, sans-serif;
+  display: block;
+  font-weight: bold;
+  font-size: 2em;
+  text-decoration: none;
+
 } */
 
-/* body{margin:0;height:100%;} */

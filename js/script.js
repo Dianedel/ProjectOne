@@ -2,8 +2,8 @@
 // -----------
 
 function Skieur () {
-  this.width = 54;
-  this.height = 60;
+  this.width = 70;
+  this.height = 75;
   this.x = (myCanvas.width/2) - (this.width/2);
   this.y = myCanvas.height/4;
   this.counter = counter;
@@ -42,6 +42,14 @@ function boxCollision (x1, y1, width1, height1, x2, y2, width2, height2) {
     height1 + y1 > y2;
 }
 
+// var restartButton = document.getElementById("restart");
+// restartButton.onclick = restart;
+
+// function restart(){
+
+//   mySkieur = new skieur();
+//   Obstacle = new Obstacle();
+// }
 
 // -----------------------------------------------------------------------------
 // Canvas
@@ -63,23 +71,23 @@ var ctx = myCanvas.getContext("2d");
 
 // Load images
 var playerImg = new Image();
-playerImg.src = "./img/skiMan.jpg";
+playerImg.src = "./img/skiGirl.png";
 
-var pineImg = new Image();
-pineImg.src = "./img/pineTree.jpg";
+var treeImg = new Image();
+treeImg.src = "./img/arbre.png";
 
-// var badManImg = new Image();
-// badManImg.src = "./img/snowball.png";
+var badManImg = new Image();
+badManImg.src = "./img/snowball.png";
 
-// var broccoliImg = new Image();
-// broccoliImg.src = "./images/broccoli.png";
+var rockImg = new Image();
+rockImg.src = "./img/rock.png";
 
-// var eggplantImg = new Image();
-// eggplantImg.src = "./images/eggplant.png";
+var pineTreeImg = new Image();
+pineTreeImg.src = "./img/pineTree.png";
 
-var obstacleImages = [pineImg, /*pizzaImg, broccoliImg, eggplantImg*/];
+var obstacleImages = [treeImg, rockImg, pineTreeImg, /*eggplantImg*/];
 var movingObstacles = [
-  new Obstacle(pineImg, 35, 35)
+  new Obstacle(treeImg, rockImg, pineTreeImg, 85,85)
 ];
 
 
@@ -88,12 +96,14 @@ var addObstacle = setInterval(function () {
   var randomIndex = Math.floor(Math.random() * obstacleImages.length);
   var image = obstacleImages[randomIndex];
 
-  // var height = 60;
-  // if (image === pizzaImg) {
-  //   height = 40;
-  // }
+  var height = 85;
+  if (image === rockImg) {
+    var newObstacle = new Obstacle(image, 15, 15);
+    height = 15;
+  }
+  else newObstacle = new Obstacle(image, 85,85);
 
-  var newObstacle = new Obstacle(image, 35, 35);
+
   // if (image === broccoliImg || image === eggplantImg) {
   //   newObstacle.isGo od = false;
   // }
@@ -102,10 +112,7 @@ var addObstacle = setInterval(function () {
 
 var skieur = new Skieur();
 
-var counter = 600;
-
-
-
+var counter = 200;
 
 var drawLoop = setInterval(function () {
   // erase the old drawings
@@ -114,9 +121,10 @@ var drawLoop = setInterval(function () {
   // redraw everything
   skieur.draw();
 
-ctx.font = "18px Helvetica";
-ctx.fillStyle = "#0A7239";
-ctx.fillText("Rest of your Life " + counter, 550, 20);
+  ctx.font = "26px sans-serif";
+  ctx.fillStyle = "#0A7239";
+  ctx.fillText("Life points " + counter, 550, 30);
+
 
 
   var globalCollision = false;
@@ -127,17 +135,7 @@ ctx.fillText("Rest of your Life " + counter, 550, 20);
     if (isCollision) {
       globalCollision = true;
       counter -= 1;
-      if (counter <=0) {
-        ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
-        ctx.font = "36px Helvetica";
-        ctx.strokeStyle = "#C70039";
-        ctx.strokeText("GAME OVER !!!", 400, 40);
-        clearInterval( addObstacle );
-        movingObstacles.forEach( function (oneObstacle ) {
-        oneObstacle.speed = 0;
-        ctx.drawImage (badManImg, myCanvas.width, myCanvas.height)
-        });
-      }
+
 
       // continue if it's a good obstacle
       console.log( "Aille");
@@ -148,13 +146,21 @@ ctx.fillText("Rest of your Life " + counter, 550, 20);
   movingObstacles.forEach(function (oneObstacle) {
     oneObstacle.draw(globalCollision);
   });
-  // if (counter == 0){
-  //   alert("Game Over!!!")
-  // }
-  // remove eaten obstacles from the array
-  // movingObstacles = movingObstacles.filter(function (oneObstacle) {
-  //   return !oneObstacle.isEaten;
-  // });
+
+  if (counter <=0) {
+
+    clearInterval( addObstacle );
+    movingObstacles.forEach( function (oneObstacle ) {
+      oneObstacle.speed = 0;
+      ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+      ctx.drawImage (badManImg, 0,0,613,1060,400,35,306,530);
+      ctx.font = "150px Agency FB";
+      ctx.fillStyle = "black";
+      ctx.fillText("GAME", 80, 260);
+      ctx.fillStyle = "#FF5733";
+      ctx.fillText("OVER", 80, 430);
+    });
+  }
 }, 1000 / 60);
   // redraw 60 times a second for smooth animations
 
@@ -193,122 +199,5 @@ body.onkeydown = function (event) {
 };
 
 //----------------------------------------------------------------
-//-----------BACKGROUND SNOW EFFECT------------------------------
+//-----------BACKGROUND------------------------------
 //------------------------------------------------------------------
-
-// (function() {
-//   var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame ||
-//   function(callback) {
-//       window.setTimeout(callback, 1000 / 60);
-//   };
-//   window.requestAnimationFrame = requestAnimationFrame;
-// })();
-
-
-// var flakes = [],
-//   canvas = document.getElementById("canvas"),
-//   ctx = canvas.getContext("2d"),
-//   flakeCount = 400,
-//   mX = -100,
-//   mY = -100
-
-//   canvas.width = window.innerWidth;
-//   canvas.height = window.innerHeight;
-
-// function snow() {
-//   ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-//   for (var i = 0; i < flakeCount; i++) {
-//       var flake = flakes[i],
-//           x = mX,
-//           y = mY,
-//           minDist = 150,
-//           x2 = flake.x,
-//           y2 = flake.y;
-
-//       var dist = Math.sqrt((x2 - x) * (x2 - x) + (y2 - y) * (y2 - y)),
-//           dx = x2 - x,
-//           dy = y2 - y;
-
-//       if (dist < minDist) {
-//           var force = minDist / (dist * dist),
-//               xcomp = (x - x2) / dist,
-//               ycomp = (y - y2) / dist,
-//               deltaV = force / 2;
-
-//           flake.velX -= deltaV * xcomp;
-//           flake.velY -= deltaV * ycomp;
-
-//       } else {
-//           flake.velX *= .98;
-//           if (flake.velY <= flake.speed) {
-//               flake.velY = flake.speed
-//           }
-//           flake.velX += Math.cos(flake.step += .05) * flake.stepSize;
-//       }
-
-//       ctx.fillStyle = "rgba(255,255,255," + flake.opacity + ")";
-//       flake.y += flake.velY;
-//       flake.x += flake.velX;
-
-//       if (flake.y >= canvas.height || flake.y <= 0) {
-//           reset(flake);
-//       }
-
-
-//       if (flake.x >= canvas.width || flake.x <= 0) {
-//           reset(flake);
-//       }
-
-//       ctx.beginPath();
-//       ctx.arc(flake.x, flake.y, flake.size, 0, Math.PI * 2);
-//       ctx.fill();
-//   }
-//   requestAnimationFrame(snow);
-// };
-
-// function reset(flake) {
-//   flake.x = Math.floor(Math.random() * canvas.width);
-//   flake.y = 0;
-//   flake.size = (Math.random() * 3) + 2;
-//   flake.speed = (Math.random() * 1) + 0.5;
-//   flake.velY = flake.speed;
-//   flake.velX = 0;
-//   flake.opacity = (Math.random() * 0.5) + 0.3;
-// }
-
-// function init() {
-//   for (var i = 0; i < flakeCount; i++) {
-//       var x = Math.floor(Math.random() * canvas.width),
-//           y = Math.floor(Math.random() * canvas.height),
-//           size = (Math.random() * 3) + 2,
-//           speed = (Math.random() * 1) + 0.5,
-//           opacity = (Math.random() * 0.5) + 0.3;
-
-//       flakes.push({
-//           speed: speed,
-//           velY: speed,
-//           velX: 0,
-//           x: x,
-//           y: y,
-//           size: size,
-//           stepSize: (Math.random()) / 30,
-//           step: 0,
-//           opacity: opacity
-//       });
-//   }
-
-//   snow();
-// };
-
-// canvas.addEventListener("mousemove", function(e) {
-//   mX = e.clientX,
-//   mY = e.clientY
-// });
-
-// window.addEventListener("resize",function(){
-//   canvas.width = window.innerWidth;
-//   canvas.height = window.innerHeight;
-// })
-
-// init();
