@@ -138,8 +138,8 @@ var drawLoop = setInterval(function () {
 
 
       // continue if it's a good obstacle
-      console.log( "Aille");
-      console.log(counter);
+      // console.log( "Aille");
+      // console.log(counter);
       // if (oneObstacle.isGood) {
     }
   });
@@ -170,7 +170,9 @@ var drawLoop = setInterval(function () {
 // -----------
 
 var body = document.querySelector("body");
+var audio = document.querySelector("audio")
 body.onkeydown = function (event) {
+  audio.play();
   switch (event.keyCode) {
     case 90: // Z key
     case 38: // up arrow
