@@ -7,6 +7,7 @@ function Skieur () {
   this.x = (myCanvas.width/2) - (this.width/2);
   this.y = myCanvas.height/4;
   this.counter = counter;
+
 }
 
 Skieur.prototype.draw = function () {
@@ -194,7 +195,3 @@ body.onkeydown = function (event) {
       break;
   }
 };
-
-//----------------------------------------------------------------
-//-----------BACKGROUND------------------------------
-//------------------------------------------------------------------
