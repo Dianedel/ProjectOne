@@ -97,13 +97,9 @@ var addObstacle = setInterval(function () {
     var newObstacle = new Obstacle(image, 15, 15);
     height = 15;
   }
-  else newObstacle = new Obstacle(image, 85,85);
-
-
-  // if (image === broccoliImg || image === eggplantImg) {
-  //   newObstacle.isGo od = false;
-  // }
+  else newObstacle = new Obstacle(image, 85,85)
   movingObstacles.push(newObstacle);
+
 }, 200);
 
 var skieur = new Skieur();
@@ -116,23 +112,17 @@ var drawLoop = setInterval(function () {
 
   // redraw everything
   skieur.draw();
-
   ctx.font = "26px sans-serif";
   ctx.fillStyle = "#0A7239";
   ctx.fillText("Life points : " + counter, 550, 30);
 
-
-
   var globalCollision = false;
-
   movingObstacles.forEach(function (oneObstacle) {
     // check collision with player
     var isCollision = boxCollision(skieur.x, skieur.y, skieur.width, skieur.height, oneObstacle.x, oneObstacle.y, oneObstacle.width, oneObstacle.height);
     if (isCollision) {
       globalCollision = true;
       counter -= 1;
-
-
       // continue if it's a good obstacle
       // console.log( "Aille");
       // console.log(counter);
@@ -144,7 +134,6 @@ var drawLoop = setInterval(function () {
   });
 
   if (counter <=0) {
-
     clearInterval( addObstacle );
     movingObstacles.forEach( function (oneObstacle ) {
       oneObstacle.speed = 0;
